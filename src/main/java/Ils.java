@@ -1,13 +1,14 @@
-public class Ils extends Coin{
+public class Ils extends Coin {
 
     private static final double value = 0.28;
+
     @Override
-    public static double getValue() {
+    public double getValue() {
         return value;
     }
 
     @Override
-    public static double calculate(double input) {
-        return input/getValue();
+    public double calculate(double input) {
+        return input * getValue();
     }
 }
