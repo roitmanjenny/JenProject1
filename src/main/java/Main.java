@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -20,7 +21,6 @@ public class Main {
         double result = coin.calculate(input);
         System.out.println("Your results is:" + result);
         list(result);
-
         startOver();
     }
 
@@ -54,12 +54,16 @@ public class Main {
     private static void startOver() {
         System.out.println("Start over? (Y/N)");
         Scanner s3 = new Scanner(System.in);
-        String over = s3.next();
+        String over = s3.next().toLowerCase(Locale.ROOT);
         switch (over) {
-            case "Y":
+            case "y":
                 screen();
                 break;
-            case "N":
+            case "n":
+                end();
+                break;
+            default:
+                System.out.println("Invalid choice, please try again");
                 end();
                 break;
         }

@@ -9,6 +9,6 @@ public class Ils extends Coin {
 
     @Override
     public double calculate(double input) {
-        return input / getValue();
+        return input * getValue();
     }
 }
