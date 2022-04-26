@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -5,25 +6,27 @@ import java.util.Scanner;
 
 
 public class Main {
+    //Global array list to hold the results
     static ArrayList<Double> myList = new ArrayList<>();
 
-    public static void main(String[] args) {
+    //first screen
+    public static void main(String[] args) throws IOException {
         System.out.println("Welcome to currency converter");
         screen();
     }
-
-    public static void screen() {
+//second screen
+    public static void screen() throws IOException {
         Coin coin = getCurrencyToConvertTo();
         System.out.println("Please enter an amount to convert");
         Scanner s2 = new Scanner(System.in);
         double input = s2.nextDouble();
-
+//results screen
         double result = coin.calculate(input);
         System.out.println("Your results is:" + result);
         list(result);
         startOver();
     }
-
+//get input from user
     private static Coin getCurrencyToConvertTo() {
         System.out.println("Please choose an option (1/2):");
         System.out.println("1. Dollars to Shekels");
@@ -45,13 +48,13 @@ public class Main {
         }
         return coin;
     }
-
+//add new result to the list
     private static List<Double> list(double result) {
         myList.add(result);
         return myList;
     }
-
-    private static void startOver() {
+//start over
+    private static void startOver() throws IOException {
         System.out.println("Start over? (Y/N)");
         Scanner s3 = new Scanner(System.in);
         String over = s3.next().toLowerCase(Locale.ROOT);
@@ -68,18 +71,19 @@ public class Main {
                 break;
         }
     }
-
-    public static void end() {
+//last screen
+    public static void end() throws IOException {
         System.out.println("Thanks for using our currency converter");
         listPrint(myList);
-    }
 
-    private static void listPrint(List<Double> myList) {
+    }
+//print list and write it to the file
+    private static void listPrint(List<Double> myList) throws IOException {
         // Print all the array elements
         for (int i = 0; i < myList.size(); i++) {
             System.out.println(myList.get(i));
+            Log.writetofile(myList.get(i));
         }
-
 
     }
 }
